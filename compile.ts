@@ -1,5 +1,3 @@
-const command: string[] = ["deno", "compile", "--unstable","./mod.ts"]
-
 const help = `
     __  __     __               
    / / / /__  / /___  ___  _____
@@ -10,17 +8,18 @@ const help = `
 
 This command includes those options:
         --lite | Compiles lite version of dottissimo
-`
+`;
+
+const command: string[] = ["deno", "compile", "--unstable", "./mod.ts"];
 
 for (const arg of Deno.args) {
-    if (arg.includes("--lite") || arg.includes("-l")) {
-        await command.push("--lite")
-    } else if (arg.includes("--help" || arg.includes("-h"))) {
-        await console.log(help)
-    }
+  if (arg.includes("--lite") || arg.includes("-l")) {
+    await command.push("--lite");
+  } else if (arg.includes("--help" || arg.includes("-h"))) {
+    await console.log(help);
+  }
 }
 
 await Deno.run({
-    cmd: command
+  cmd: command,
 }).status();
-
